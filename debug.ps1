@@ -36,5 +36,5 @@ $Alerts = Invoke-CbrApi -Uri "/api/v2/alert" -Method "GET" | Select-Object -Firs
 "Retrieved $($Alerts.count) alerts."
 $Alerts
 
-$Alert = Get-CbrAlert -Id "de887c1f-074c-49c5-a1c0-0b7849e8a842"
+$Alert = Get-CbrAlert -Id
 $Alert
