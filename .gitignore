@@ -1,3 +1,4 @@
-#debug.ps1
-#.code-workspace
-#.vscode
+debug.ps1
+.code-workspace
+.vscode
+*.ini
