@@ -5,47 +5,45 @@ Function Invoke-CbrApi {
     param(
         [Parameter(Mandatory = $true)]
         [string]
-        $Uri,
+        $UriPath,
 
         [Parameter(Mandatory = $true)]
         [string]
         $Method,
 
+        [Parameter(Mandatory = $false)]
+        [hashtable]
+        $Body,
+
+        [Parameter(Mandatory = $false)]
         [string]
-        $Body
+        $Instance
     )
     begin {
-        # If no API creds, prompt user
-        try {
-            $Message = "Please insert the URI, including port number of your Carbon Black instance " +
-            "in the User name box (e.g. my.hostname:9000), and your API key in the Password box."
-
-            $Cbr = Get-StoredCredential -Name "Cbr" -Message $Message
-
-            $CbrUri = ($Cbr.GetNetworkCredential().UserName).ToLower()
-            if(-not ($CbrUri.StartsWith("http://") -or $CbrUri.StartsWith("https://")))
-            {
-                $CbrUri = "http://" + $CbrUri 
-            }
-            $Token = $Cbr.GetNetworkCredential().Password
+        if ($Instance) { # Use specified instance
+            $CbrInstance = Get-CbrInstance -Instance $Instance
+        } else { # else create a new instance
+            $CbrInstance = Get-CbrInstance
         }
-        catch {
-            Write-Error "Something went wrong with obtaining credentials. " + 
-            "Possibly the CredentialManager module isn't installed."
+
+        if ($CbrInstance.ignore_selfsigned_certificate) {
+            if ($CbrInstance.ignore_selfsigned_certificate -eq $true) {
+                Set-SelfSignedCertificateAsIgnored
+            }
         }
     }
     process {
         # Do some stuff
         # Define request parameters
         $Param = @{
-            Uri = $CbrUri + $Uri # Adds the path element to the base fqdn
+            Uri = $CbrInstance.uri + $UriPath # Adds the path element to the base fqdn
             Method = $Method
             Headers = @{
-                "X-Auth-Token" = "$Token"
+                "X-Auth-Token" = "$($CbrInstance.Credential.GetNetworkCredential().Password)"
             }
         }
         if($Method -and $Method -ne "GET"){$Param.ContentType = 'application/json'}
-        if($Body){$Param.Body = $Body}
+        if($Body){$Param.Body = $Body | ConvertTo-Json -depth 100 -Compress}
         # Make request
         $Request = try {
             Invoke-RestMethod @Param

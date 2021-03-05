@@ -2,3 +2,5 @@ debug.ps1
 .code-workspace
 .vscode
 *.ini
+/Config
+debug*
