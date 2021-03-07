@@ -6,7 +6,7 @@ Function Get-WatchlistAction {
     [alias("Get-WatchlistActionType")]
     [CmdletBinding(DefaultParameterSetName = 'All')]
     param(
-        [Parameter(mandatory=$true)] [int]$Id,
+        [Parameter(mandatory=$true, ValueFromPipelineByPropertyName=$True)] [int]$Id,
         [Parameter(mandatory=$False)] [string]$Instance,
         
         [ValidateSet("syslog","email","alert","all")]
@@ -15,23 +15,25 @@ Function Get-WatchlistAction {
         [Parameter(mandatory=$false, ParameterSetName="All")] [switch]$All
         
     )
-    if ($PSBoundParameters.ContainsKey('Action') -and $Action -ne "all") {
-        $UriPath = "/api/v1/watchlist/$Id/action_type/$Action"
-    }
-    elseif ($All -or $Action -eq "all") {
-        $UriPath = "/api/v1/watchlist/$Id/action_type"
-    }
-    else {
-        $UriPath = "/api/v1/watchlist/$Id/action_type"
-    }
-
-    $Method = "GET"
-
-
-    if ($Instance) {
-        Invoke-CbrApi -Uri $UriPath -Method $Method -Instance $Instance
-    }
-    else {
-        Invoke-CbrApi -UriPath $UriPath -Method $Method
+    process {
+        if ($PSBoundParameters.ContainsKey('Action') -and $Action -ne "all") {
+            $UriPath = "/api/v1/watchlist/$Id/action_type/$Action"
+        }
+        elseif ($All -or $Action -eq "all") {
+            $UriPath = "/api/v1/watchlist/$Id/action_type"
+        }
+        else {
+            $UriPath = "/api/v1/watchlist/$Id/action_type"
+        }
+    
+        $Method = "GET"
+    
+    
+        if ($Instance) {
+            Invoke-CbrApi -Uri $UriPath -Method $Method -Instance $Instance
+        }
+        else {
+            Invoke-CbrApi -UriPath $UriPath -Method $Method
+        }
     }
 }

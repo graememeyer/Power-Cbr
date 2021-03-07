@@ -7,10 +7,9 @@ Describe "Watchlists" {
         $RandomString = [System.IO.Path]::GetRandomFileName().Substring(0,8)
 
         # Create a new watchlist
-        $NewWatchlistResponse = New-Watchlist -Name "CTH-TEST-WL-GM-$($RandomString)" `
+        $NewWatchlistResponse = New-Watchlist -Name "API-TEST-WL-$($RandomString)" `
                     -Description "Testing the ability to create a new watchlist via the api." `
                     -Search_query "process_name:calc.exe" `
-                    -Instance "dev"
 
         $NewWatchlistResponse.id | Should -BeGreaterThan 0
 

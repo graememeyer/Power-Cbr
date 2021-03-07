@@ -4,14 +4,15 @@ Function ConvertTo-EncodedSearchQuery {
     [CmdletBinding()]
     param(
         [Alias("Search","Query","Search_Query")]
-        [Parameter(mandatory=$False, ValueFromPipeline)] [string]$SearchQuery
+        [Parameter(mandatory=$True, ValueFromPipeline=$True)] [string]$SearchQuery
     )
-
-    if ($SearchQuery -notmatch "^q=") {
-        $SearchQuery = "q=" + $SearchQuery
+    process {
+        if ($SearchQuery -notmatch "^q=") {
+            $SearchQuery = "q=" + $SearchQuery
+        }
+    
+        # $SearchQuery = [uri]::EscapeDataString($SearchQuery)
+    
+        return $SearchQuery
     }
-
-    $SearchQuery = $SearchQuery
-
-    return $SearchQuery
 }

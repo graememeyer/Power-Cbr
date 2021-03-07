@@ -36,7 +36,7 @@ Function Get-Alerts {
         [Parameter(mandatory=$False)] [bool]$Facets = $False,
 
         [ValidateSet("In Progress","Resolved","Unresolved","False Positive","all")]
-        [Parameter(mandatory=$False)] [string[]]$Status = "Unresolved"
+        [Parameter(mandatory=$False)] [string[]]$Status = @("Unresolved","In Progress")
     )
     $UriPath = "/api/v2/alert"
     $Method = "GET"
@@ -51,10 +51,15 @@ Function Get-Alerts {
     # For some reason, this API wants query strings instead of body parameters...
 
     $UriQuery = "?cb.urlver=1" # Doesn't seem to be required, but ¯\_(ツ)_/¯
-
-    foreach ($S in $Status) {
-        $UriQuery += "&cb.fq.status="
-        $UriQuery += ([uri]::EscapeDataString($S))
+    
+    if ($Status -like "all") {
+        $Status = @("In Progress","Resolved","Unresolved","False Positive")
+    }
+    else {
+        foreach ($S in $Status) {
+            $UriQuery += "&cb.fq.status="
+            $UriQuery += ([uri]::EscapeDataString($S))
+        }
     }
 
     $UriQuery += "&"

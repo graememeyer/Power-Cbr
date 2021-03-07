@@ -1,13 +1,13 @@
-ForEach ($Module in (Get-ChildItem -Path .\*.psm1 -Recurse)) {Import-Module $Module.FullName -Force}
+foreach ($Module in (Get-ChildItem .\*.psm1 -Recurse | Select-Object -ExpandProperty FullName)) {Import-Module $Module -Force}
 
 Describe "Update-Alert" {
     It "Updates an alert from Carbon Black EDR" {
         
         # First get the alerts
-        $Alerts = Get-Alerts
+        $Alerts = Get-Alerts -Status all
 
         # If non-zero
-        $Alerts.Results | Should -Not -BeNullOrEmpty  
+        ($Alerts | Get-Member results) | Should -BeTrue 
         $Alerts.Results.Count | Should -BeGreaterThan 0 
 
         # Edit alert

@@ -1,5 +1,4 @@
-debug.ps1
-.code-workspace
+*.code-workspace
 .vscode
 *.ini
 /Config
