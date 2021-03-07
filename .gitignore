@@ -3,3 +3,4 @@
 *.ini
 /Config
 debug*
+/Tests/run-tests.ps1
