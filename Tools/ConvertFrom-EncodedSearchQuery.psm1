@@ -13,7 +13,7 @@ Function ConvertFrom-EncodedSearchQuery {
         if ($SearchQuery -match "^q=(?<query>.*)$") {
             $SearchQuery = $Matches.query
         }
-    
+
         return $SearchQuery
     }
 }

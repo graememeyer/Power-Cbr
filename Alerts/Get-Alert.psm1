@@ -1,4 +1,4 @@
-<# https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/#alerts
+﻿<# https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/#alerts
 Alerts
 Search Alerts
 /api/v2/alert
@@ -16,8 +16,8 @@ facets: OPTIONAL Return facet results. ‘false’ by default, set to ‘true’
 #> ## THIS SEEMS TO BE _WRONG_ "last_update" is _NOT_ a valid sort field!
 
 # Get-Alert.psm1
-Function Get-Alerts {
-    # [alias("Get-Alerts")]
+Function Get-Alert {
+    [alias("Get-Alerts")]
     [alias("Get-CbrAlert")]
     param(
         [Parameter(mandatory=$False)] [string]$Instance,
@@ -29,7 +29,7 @@ Function Get-Alerts {
         [Parameter(mandatory=$False)] [int]$Rows = 100,
 
         [Parameter(mandatory=$False)] [int]$Start,
-        
+
         [Parameter(mandatory=$False)] [string]$Sort = "created_time asc", # Split into field + order at some point
 
         [Alias("Facet")]
@@ -51,7 +51,7 @@ Function Get-Alerts {
     # For some reason, this API wants query strings instead of body parameters...
 
     $UriQuery = "?cb.urlver=1" # Doesn't seem to be required, but ¯\_(ツ)_/¯
-    
+
     if ($Status -like "all") {
         $Status = @("In Progress","Resolved","Unresolved","False Positive")
     }
@@ -63,7 +63,7 @@ Function Get-Alerts {
     }
 
     $UriQuery += "&"
-    
+
     $Parameters = @{}
 
     if ($Query) {$Parameters['q'] = [uri]::EscapeDataString($Query)}
@@ -72,7 +72,7 @@ Function Get-Alerts {
     if ($Sort) {$Parameters['sort'] = [uri]::EscapeDataString($Sort)}
     if ($Facets) {$Parameters['facets'] = $Facets}
 
-    $Parameters = ($Parameters.GetEnumerator() | % { "$($_.Key)=$($_.Value)" }) -join '&'
+    $Parameters = ($Parameters.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join '&'
 
     # $UriPath += "?
     # $UriQuery = "cb.urlver=1&cb.fq.status=Unresolved&sort=alert_severity%20desc&rows=1&facet=false"

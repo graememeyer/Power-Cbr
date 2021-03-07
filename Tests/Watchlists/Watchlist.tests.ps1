@@ -2,7 +2,7 @@ ForEach ($Module in (Get-ChildItem -Path .\*.psm1 -Recurse)) {Import-Module $Mod
 
 Describe "Watchlists" {
     It "Creates a new watchlist in Carbon Black EDR" {
-        
+
         # Create a random string
         $RandomString = [System.IO.Path]::GetRandomFileName().Substring(0,8)
 

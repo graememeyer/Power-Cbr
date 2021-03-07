@@ -10,9 +10,9 @@ Function ConvertTo-EncodedSearchQuery {
         if ($SearchQuery -notmatch "^q=") {
             $SearchQuery = "q=" + $SearchQuery
         }
-    
+
         # $SearchQuery = [uri]::EscapeDataString($SearchQuery)
-    
+
         return $SearchQuery
     }
 }

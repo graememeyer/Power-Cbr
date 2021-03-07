@@ -7,10 +7,10 @@ Function Set-CurrentInstance {
     )
     begin {
         if (-not($Config)) {
-            [System.Collections.Hashtable] $Global:Config = @{}
+            [System.Collections.Hashtable] $global:Config = @{}
         }
         if (-not($Config.Instances)) {
-            [System.Collections.Hashtable] $Global:Config.Instances = @{}
+            [System.Collections.Hashtable] $global:Config.Instances = @{}
         }
     }
     process {

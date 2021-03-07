@@ -13,30 +13,30 @@ Function Edit-Watchlist {
     process {
         $UriPath = "/api/v1/watchlist/$Id"
         $Method = "PUT"
-    
+
         if ($Search_query) {
-            # Format and url-encode the search query 
+            # Format and url-encode the search query
             $Search_query = $Search_query | ConvertTo-EncodedSearchQuery
-        } 
+        }
         else { # The search_query field is required to update/edit the watchlist
             try { # If it's blank or non-existant, the query will be blanked on the server too.
                 $CurrentWatchlist = Get-Watchlist -Id $Id
                 $Search_query = $CurrentWatchlist.search_query
             }
             catch {
-                Write-Host "Something went wrong retreiving the details of the existing watchlist."
-                Write-Host "Exiting."
+                Write-Error "Something went wrong retreiving the details of the existing watchlist."
+                Write-Error "Exiting."
                 exit
             }
         }
-    
+
         $Body = @{}
         if ($Name)          {$Body.name = $Name}
         if ($Description)   {$Body.description = $Description}
         if ($Search_query)  {$Body.search_query = $Search_query}
         if ($Enabled)       {$Body.enabled = $Enabled}
-        
-    
+
+
         if ($Instance) {
             Invoke-CbrApi -Uri $UriPath -Method $Method -Body $Body -Instance $Instance
         }

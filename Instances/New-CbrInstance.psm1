@@ -6,10 +6,10 @@
 .PARAMETER Name
     The path to the .
 .PARAMETER Uri
-    Specifies a path to one or more locations. Unlike Path, the value of 
-    LiteralPath is used exactly as it is typed. No characters are interpreted 
+    Specifies a path to one or more locations. Unlike Path, the value of
+    LiteralPath is used exactly as it is typed. No characters are interpreted
     as wildcards. If the path includes escape characters, enclose it in single
-    quotation marks. Single quotation marks tell Windows PowerShell not to 
+    quotation marks. Single quotation marks tell Windows PowerShell not to
     interpret any characters as escape sequences.
 #>
 
@@ -20,34 +20,34 @@ Function New-CbrInstance {
                 HelpMessage="A name to refer to this unique instance of carbon black - e.g. 'dev'")]
             [ValidatePattern("^[\w\s.-]+$")]
         [string]$Name,
-        
+
             [Parameter(Mandatory=$true,
-            HelpMessage="URI must match format fqdn:port. e.g. google.com:443")] 
+            HelpMessage="URI must match format fqdn:port. e.g. google.com:443")]
                 [Alias("FQDN")]
                 [ValidatePattern("^(http(s?)://)?[\w\.-]+:\d+$")]
         [string]$Uri,
 
-            [Parameter(Mandatory=$false)] 
+            [Parameter(Mandatory=$false)]
         [bool]$IgnoreSelfSignedCertificates,
-        
+
             [Parameter(Mandatory=$false)]
         [PSCredential]$Credential
     )
     begin {
         # Create $Config for the application configuration
         if (-not($Config)) {
-            [System.Collections.Hashtable] $Global:Config = @{}
-        }    
+            [System.Collections.Hashtable] $global:Config = @{}
+        }
 
         # Create $Config for the application configuration
         if (-not($Config.Instances)) {
             [System.Collections.Hashtable] $Config.Instances = @{}
-        }  
+        }
     }
     process {
 
         if($Uri -NotMatch "^http(s)?://") {
-            $Uri = "https://" + $Uri 
+            $Uri = "https://" + $Uri
         }
 
         if(-not $IgnoreSelfSignedCertificates) {
@@ -68,7 +68,7 @@ Function New-CbrInstance {
 
         $InstanceConfig = @{}
         $InstanceConfig.name = $Name
-        $InstanceConfig.uri = $Uri 
+        $InstanceConfig.uri = $Uri
         $InstanceConfig.ignore_selfsigned_certificate = $IgnoreSelfSignedCertificates
 
         if ($Credential) {
@@ -76,7 +76,7 @@ Function New-CbrInstance {
         }
         else {
             $InstanceConfig.Credential = Get-Credential -UserName $Name `
-                                                        -Message "Input the API token for this instance of Carbon Black:" 
+                                                        -Message "Input the API token for this instance of Carbon Black:"
         }
 
         $Config.Instances[$InstanceConfig.Name] = $InstanceConfig

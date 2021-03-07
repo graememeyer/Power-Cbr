@@ -2,10 +2,10 @@ ForEach ($Module in (Get-ChildItem -Path .\*.psm1 -Recurse)) {Import-Module $Mod
 
 Describe "Get-Watchlist" {
     It "Gets Watchlist(s) from Carbon Black EDR" {
-        
+
         $Watchlists = Get-Watchlists
 
-        $Watchlists | Should -Not -BeNullOrEmpty    
+        $Watchlists | Should -Not -BeNullOrEmpty
         $Watchlists.Count | Should -BeGreaterThan 2
 
         $Watchlist = $Watchlists[0]

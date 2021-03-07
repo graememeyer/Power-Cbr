@@ -2,13 +2,13 @@ foreach ($Module in (Get-ChildItem .\*.psm1 -Recurse | Select-Object -ExpandProp
 
 Describe "Update-Alert" {
     It "Updates an alert from Carbon Black EDR" {
-        
+
         # First get the alerts
-        $Alerts = Get-Alerts -Status all
+        $Alerts = Get-Alert -Status all
 
         # If non-zero
-        ($Alerts | Get-Member results) | Should -BeTrue 
-        $Alerts.Results.Count | Should -BeGreaterThan 0 
+        ($Alerts | Get-Member results) | Should -BeTrue
+        $Alerts.Results.Count | Should -BeGreaterThan 0
 
         # Edit alert
         $Alert = $Alerts.Results[0]
@@ -24,6 +24,6 @@ Describe "Update-Alert" {
         # Check that the edit was successfull
         # $EditedAlert = Get-Alert -Id $Alert.unique_id
         # $EditedAlert.status = Get-Alert -Id $Alert.unique_id
-        # $Alerts.Results | Should -Not -BeNullOrEmpty    
+        # $Alerts.Results | Should -Not -BeNullOrEmpty
     }
 }

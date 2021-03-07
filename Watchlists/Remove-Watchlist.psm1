@@ -8,12 +8,12 @@ Function Remove-Watchlist {
     process {
         $UriPath = "/api/v1/watchlist"
         $Method = "DELETE"
-    
+
         # Single alert query
         if ($Id) {
             $UriPath = $UriPath + "/$Id"
         }
-        
+
         if ($Instance) {
             Invoke-CbrApi -Uri $UriPath -Method $Method -Instance $Instance
         }

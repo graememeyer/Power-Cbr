@@ -23,7 +23,7 @@ Describe "Watchlist-Pipeline" {
 
             $WatchlistArray += $NewWatchlist
         }
-        
+
         # Verify the random string in the name
         $referenzRegex = [string]::Join('|', $RandomStringArray)
         foreach ($Watchlist in $WatchlistArray) {

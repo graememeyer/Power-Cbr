@@ -1,6 +1,7 @@
 # Test-Watchlist.psm1
 Function Test-Watchlist {
     [CmdletBinding()]
+    [OutputType([bool])]
     Param(
         [Parameter(Mandatory=$True, ValueFromPipeline=$True)]
         $SuspectWatchlist
@@ -53,7 +54,7 @@ Function Test-Watchlist {
         Write-Verbose "You passed Watchlist $($SuspectWatchlist.name) into the pipeline!"
         Write-Verbose "===== Watchlist Details ====="
         Write-Verbose $SuspectWatchlist
-        
+
         return $ValidWatchlist
     }
 

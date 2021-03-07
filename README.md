@@ -1,10 +1,10 @@
 # Power-Cbr
-A PowerShell module library for interating with Carbon Black EDR (né Carbon Black Response). 
+A PowerShell module library for interating with Carbon Black EDR (né Carbon Black Response).
 
-Only CB EDR versions >=6.3 are supported / expected to work. 
+Only CB EDR versions >=6.3 are supported / expected to work.
 
 # Features
-This library currently supports the Alert and Watchlist APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/). 
+This library currently supports the Alert and Watchlist APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/).
 
 /api/v2/alert
 * Search

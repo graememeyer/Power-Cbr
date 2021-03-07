@@ -9,10 +9,10 @@ Function Get-CbrInstance {
     )
     begin {
         if (-not($Config)) {
-            [System.Collections.Hashtable] $Global:Config = @{}
+            [System.Collections.Hashtable] $global:Config = @{}
         }
         if (-not($Config.Instances)) {
-            [System.Collections.Hashtable] $Global:Config.Instances = @{}
+            [System.Collections.Hashtable] $global:Config.Instances = @{}
         }
     }
     process {
@@ -32,15 +32,15 @@ Function Get-CbrInstance {
             $InstanceConfig = $Config.Instances.($Config.CurrentInstance)
             return $InstanceConfig
         }
-<#         elseif ($Global:Config.Instances) { # If instances are configured but somehow no current instance is set
+<#         elseif ($global:Config.Instances) { # If instances are configured but somehow no current instance is set
             $Valid = $false
             while (-not $Valid) {
-                Write-Host "No current/previous instance is set, but $($Config.Instances.Count) configurations are loaded:"
-                Write-Host $Config.Instances.GetEnumerator()
+                Write-Output "No current/previous instance is set, but $($Config.Instances.Count) configurations are loaded:"
+                Write-Output $Config.Instances.GetEnumerator()
 
                 $Choice = Read-Host -Prompt "Which one would you like to use? Enter 'new' to create a new instance and use that."
                 if ($Config.Instances.Keys -contains $Choice) {
-                    Write-Host "You have chosen: $Choice"
+                    Write-Output "You have chosen: $Choice"
                     Set-CurrentInstance -Instance $Choice
                     $InstanceConfig = $Config.Instances.$Choice
                     return $InstanceConfig
@@ -53,8 +53,8 @@ Function Get-CbrInstance {
             }
         } #>
         else { # Create a new one if none specified and none exist
-            Write-Host "No instance was specified, and no instances were configured."
-            Write-Host "You must configure a new instance. Please enter the details:"
+            Write-Output "No instance was specified, and no instances were configured."
+            Write-Output "You must configure a new instance. Please enter the details:"
             $InstanceConfig = New-CbrInstance
             Set-CurrentInstance -Instance $InstanceConfig.Name
             return $InstanceConfig
