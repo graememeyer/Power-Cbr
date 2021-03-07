@@ -1,4 +1,4 @@
-# Power-Hive
+# Power-Cbr
 A PowerShell module library for interating with Carbon Black EDR (né Carbon Black Response). 
 
 Only CB EDR versions >=6.3 are supported / expected to work. 
