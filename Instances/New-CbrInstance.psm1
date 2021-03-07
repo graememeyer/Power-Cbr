@@ -15,7 +15,6 @@
 
 # New-CbrInstanceConfig.psm1
 Function New-CbrInstance {
-    [Alias("New-CbrInstanceConfig")]
     param(
             [Parameter(Mandatory=$true,
                 HelpMessage="A name to refer to this unique instance of carbon black - e.g. 'dev'")]

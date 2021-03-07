@@ -74,7 +74,7 @@ Function Get-Alerts {
 
     $Parameters = ($Parameters.GetEnumerator() | % { "$($_.Key)=$($_.Value)" }) -join '&'
 
-    # $UriPath += "?" 
+    # $UriPath += "?
     # $UriQuery = "cb.urlver=1&cb.fq.status=Unresolved&sort=alert_severity%20desc&rows=1&facet=false"
     $UriQuery += $Parameters
     $UriPath += $UriQuery

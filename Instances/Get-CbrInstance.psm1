@@ -1,6 +1,5 @@
 # Get-CbrInstanceConfig.psm1
 Function Get-CbrInstance {
-    [Alias("New-CbrInstanceConfig")]
     param(
             [Parameter(mandatory=$false,
                 HelpMessage="A name to refer to this unique instance of carbon black - e.g. 'dev'")]

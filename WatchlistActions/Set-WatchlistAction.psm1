@@ -2,6 +2,7 @@
 Function Set-WatchlistAction {
     [alias("Set-WatchlistActionStatus")]
     [alias("Set-WatchlistActionState")]
+    [alias("Set-WatchlistActionType")]
     param(
         [Parameter(mandatory=$true, ValueFromPipelineByPropertyName=$True)] [int]$Id,
         [Parameter(mandatory=$False)] [string]$Instance,
