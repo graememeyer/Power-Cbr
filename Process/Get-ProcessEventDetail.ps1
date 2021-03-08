@@ -1,5 +1,6 @@
-# Get-ProcessEventDetails.psm1
-Function Get-ProcessEventDetails {
+# Get-ProcessEventDetail.psm1
+Function Get-ProcessEventDetail {
+    [Alias("Get-ProcessEventDetails")]
     [Alias("Get-ProcessDetail")]
     [Alias("Get-ProcessDetails")]
     [Alias("Get-Process")]
@@ -20,9 +21,9 @@ Function Get-ProcessEventDetails {
         [ValidateScript({$_ -Match "\w+-\w+-\w+-\w+-\w+-\w+"})]
     [string]$UniqueId,
 
-    [int64]$EventStart,
+    #[int64]$EventStart,
 
-    [int64]$EventCount,
+    #[int64]$EventCount,
 
     [Alias("ProcessOnly")]
     [switch]$DetailsOnly
