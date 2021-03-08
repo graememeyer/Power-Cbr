@@ -13,8 +13,8 @@
     interpret any characters as escape sequences.
 #>
 
-# New-CbrInstanceConfig.psm1
-Function New-CbrInstance {
+# New-InstanceConfig.psm1
+Function New-Instance {
     param(
             [Parameter(Mandatory=$true,
                 HelpMessage="A name to refer to this unique instance of carbon black - e.g. 'dev'")]

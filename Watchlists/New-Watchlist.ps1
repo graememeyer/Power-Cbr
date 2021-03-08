@@ -18,9 +18,9 @@ Function New-Watchlist {
     $Body.index_type = "events"
 
     if ($Instance) {
-        Invoke-CbrApi -Uri $UriPath -Method $Method -Body $Body -Instance $Instance
+        Invoke-Api -Uri $UriPath -Method $Method -Body $Body -Instance $Instance
     }
     else {
-        Invoke-CbrApi -UriPath $UriPath -Method $Method -Body $Body
+        Invoke-Api -UriPath $UriPath -Method $Method -Body $Body
     }
 }

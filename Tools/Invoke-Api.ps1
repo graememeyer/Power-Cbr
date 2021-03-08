@@ -1,5 +1,5 @@
 # Invokes Carbon Black EDR's API with the submitted parameters
-Function Invoke-CbrApi {
+Function Invoke-Api {
     [CmdletBinding()]
     [OutputType([psobject])]
     param(
@@ -21,9 +21,9 @@ Function Invoke-CbrApi {
     )
     begin {
         if ($Instance) { # Use specified instance
-            $CbrInstance = Get-CbrInstance -Instance $Instance
+            $CbrInstance = Get-Instance -Instance $Instance
         } else { # else create a new instance
-            $CbrInstance = Get-CbrInstance
+            $CbrInstance = Get-Instance
         }
 
         if ($CbrInstance.ignore_selfsigned_certificate) {

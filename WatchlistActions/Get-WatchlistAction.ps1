@@ -30,10 +30,10 @@ Function Get-WatchlistAction {
 
 
         if ($Instance) {
-            Invoke-CbrApi -Uri $UriPath -Method $Method -Instance $Instance
+            Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
         }
         else {
-            Invoke-CbrApi -UriPath $UriPath -Method $Method
+            Invoke-Api -UriPath $UriPath -Method $Method
         }
     }
 }

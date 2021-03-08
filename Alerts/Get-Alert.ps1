@@ -18,7 +18,6 @@ facets: OPTIONAL Return facet results. ‘false’ by default, set to ‘true’
 # Get-Alert.psm1
 Function Get-Alert {
     [alias("Get-Alerts")]
-    [alias("Get-CbrAlert")]
     param(
         [Parameter(mandatory=$False)] [string]$Instance,
 
@@ -80,9 +79,9 @@ Function Get-Alert {
     $UriPath += $UriQuery
 
     if ($Instance) {
-        Invoke-CbrApi -Uri $UriPath -Method $Method -Instance $Instance
+        Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
     }
     else {
-        Invoke-CbrApi -UriPath $UriPath -Method $Method
+        Invoke-Api -UriPath $UriPath -Method $Method
     }
 }

@@ -1,5 +1,5 @@
-# Get-CbrInstanceConfig.psm1
-Function Get-CbrInstance {
+# Get-InstanceConfig.psm1
+Function Get-Instance {
     param(
             [Parameter(mandatory=$false,
                 HelpMessage="A name to refer to this unique instance of carbon black - e.g. 'dev'")]
@@ -23,7 +23,7 @@ Function Get-CbrInstance {
                 return $InstanceConfig
             }
             else { # Create it if it doesn't
-                $InstanceConfig = New-CbrInstance -Name $Instance
+                $InstanceConfig = New-Instance -Name $Instance
                 Set-CurrentInstance -Instance $InstanceConfig.Name
                 return $InstanceConfig
             }
@@ -46,7 +46,7 @@ Function Get-CbrInstance {
                     return $InstanceConfig
                 }
                 elseif ($Choice -eq "new") {
-                    $InstanceConfig = New-CbrInstance
+                    $InstanceConfig = New-Instance
                     Set-CurrentInstance -Instance $Instance
                     return $InstanceConfig
                 }
@@ -55,10 +55,10 @@ Function Get-CbrInstance {
         else { # Create a new one if none specified and none exist
             Write-Output "No instance was specified, and no instances were configured."
             Write-Output "You must configure a new instance. Please enter the details:"
-            $InstanceConfig = New-CbrInstance
+            $InstanceConfig = New-Instance
             Set-CurrentInstance -Instance $InstanceConfig.Name
             return $InstanceConfig
         }
-        Write-Error "Get-CbrInstance: End of file - you shouldn't end up down here."
+        Write-Error "Get-Instance: End of file - you shouldn't end up down here."
     }
 }
