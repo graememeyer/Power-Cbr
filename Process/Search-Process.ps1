@@ -1,6 +1,8 @@
-# Get-Process.psm1
+# Search-Process.psm1
 Function Search-Process {
-
+    [Alias("Search-Processes")]
+    [Alias("Find-Process")]
+    [Alias("Find-Processes")]
     param(
         [Parameter(mandatory=$False)] [string]$Instance,
         [Parameter(mandatory=$False)] [string]$Query,
@@ -24,7 +26,9 @@ Function Search-Process {
         [Parameter(mandatory=$False)] [bool]$FuzzyFacet,
 
         [Alias("GroupBy", "GroupField")]
-        [Parameter(mandatory=$False)] [string]$Group
+        [Parameter(mandatory=$False)] [string]$Group,
+
+        [switch]$Results
     )
     $UriPath = "/api/v1/process"
     $Method = "GET"
@@ -51,9 +55,16 @@ Function Search-Process {
     $UriPath += $UriQuery
 
     if ($Instance) {
-        Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
+        $Response = Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
     }
     else {
-        Invoke-Api -UriPath $UriPath -Method $Method
+        $Response = Invoke-Api -UriPath $UriPath -Method $Method
+    }
+
+    if ($Results -and $Response.Results) {
+        $Response.Results
+    }
+    else {
+        $Response
     }
 }

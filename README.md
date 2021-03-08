@@ -4,7 +4,18 @@ A PowerShell module library for interating with Carbon Black EDR (né Carbon Bla
 Only CB EDR versions >=6.3 are supported / expected to work.
 
 # Features
-This library currently supports the Alert and Watchlist APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/).
+This library currently supports the Alert, Watchlist and a subset of the Process APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/).
+
+/api/v1/process/
+* Search
+* Get (Process Summary)
+* Get (Process Segment Details)
+
+/api/v2/process/
+* Get (Process Summary (No Siblings))
+
+/api/v4/process/
+* Get (Process Event Details)
 
 /api/v2/alert
 * Search
