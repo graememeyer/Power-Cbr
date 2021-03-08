@@ -36,3 +36,31 @@ Current version: 1.0
 None, other than the not-yet-built content.
 
 # Usage
+
+## Alerts
+Get-Alert
+Update-Alert
+
+## Instance
+Get-CbrInstance
+Get-CurrentInstance
+New-CbrInstance
+Set-CurrentInstance
+
+## Processes
+Get-ProcessEventDetails
+Get-ProcessSegment
+Get-ProcessSummary
+Search-Process
+
+## Watchlist Actions
+Get-WatchlistAction
+Set-WatchlistAction
+Test-WatchlistAction
+
+## Watchlists
+Edit-Watchlist
+Get-Watchlist
+New-Watchlist
+Remove-Watchlist
+Test-Watchlist
