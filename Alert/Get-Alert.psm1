@@ -35,7 +35,9 @@ Function Get-Alert {
         [Parameter(mandatory=$False)] [bool]$Facets = $False,
 
         [ValidateSet("In Progress","Resolved","Unresolved","False Positive","all")]
-        [Parameter(mandatory=$False)] [string[]]$Status = @("Unresolved","In Progress")
+        [Parameter(mandatory=$False)] [string[]]$Status = @("Unresolved","In Progress"),
+
+        [switch]$ResultsOnly
     )
     $UriPath = "/api/v2/alert"
     $Method = "GET"
@@ -79,9 +81,16 @@ Function Get-Alert {
     $UriPath += $UriQuery
 
     if ($Instance) {
-        Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
+        $Response = Invoke-Api -Uri $UriPath -Method $Method -Instance $Instance
     }
     else {
-        Invoke-Api -UriPath $UriPath -Method $Method
+        $Response = Invoke-Api -UriPath $UriPath -Method $Method
+    }
+
+    if ($ResultsOnly -and $Response.results) {
+        $Response.results
+    }
+    else {
+        $Response
     }
 }
