@@ -5,3 +5,4 @@
 debug*
 /Tests/run-tests.ps1
 /Build
+build.ps1
