@@ -28,7 +28,8 @@ Function Search-Process {
         [Alias("GroupBy", "GroupField")]
         [Parameter(mandatory=$False)] [string]$Group,
 
-        [switch]$Results
+        [Alias("Results")]
+        [switch]$ResultsOnly
     )
     $UriPath = "/api/v1/process"
     $Method = "GET"
@@ -43,7 +44,7 @@ Function Search-Process {
     if ($Rows) {$Parameters['rows'] = $Rows}
     if ($Start) {$Parameters['start'] = $Start}
     if ($Sort) {$Parameters['sort'] = [uri]::EscapeDataString($Sort)}
-    if ($Facets) {$Parameters['facet'] = $Facet}
+    if ($Facet) {$Parameters['facet'] = $Facet}
     if ($FacetField) {$Parameters['facet.field'] = $FacetField}
     if ($ComprehensiveSearch) {$Parameters['cb.comprehensive_search'] = $ComprehensiveSearch}
     if ($FuzzyFacet) {$Parameters['cb.facet.fuzzy'] = $FuzzyFacet}
@@ -61,7 +62,7 @@ Function Search-Process {
         $Response = Invoke-Api -UriPath $UriPath -Method $Method
     }
 
-    if ($Results -and $Response.Results) {
+    if ($ResultsOnly -and $Response.Results) {
         $Response.Results
     }
     else {
