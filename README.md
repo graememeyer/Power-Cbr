@@ -17,6 +17,7 @@ This library currently supports the Alert, Watchlist and a subset of the Process
 * Search
 * Get (Process Summary)
 * Get (Process Segment Details)
+* Get (Process Preview)
 
 /api/v2/process/
 * Get (Process Summary (No Siblings))
@@ -45,30 +46,30 @@ None, other than the not-yet-built content.
 # Usage
 
 ## Alerts
-Get-Alert
-Update-Alert
+* Get-Alert
+* Update-Alert
 
 ## Instance
-Get-CbrInstance
-Get-CurrentInstance
-New-CbrInstance
-Set-CurrentInstance
+* Get-CbrInstance
+* Get-CurrentInstance
+* New-CbrInstance
+* Set-CurrentInstance
 
 ## Processes
-Get-ProcessEventDetail
-Get-ProcessPreview
-Get-ProcessSegment
-Get-ProcessSummary
-Search-Process
+* Get-ProcessEventDetail
+* Get-ProcessPreview
+* Get-ProcessSegment
+* Get-ProcessSummary
+* Search-Process
 
 ## Watchlist Actions
-Get-WatchlistAction
-Set-WatchlistAction
-Test-WatchlistAction
+* Get-WatchlistAction
+* Set-WatchlistAction
+* Test-WatchlistAction
 
 ## Watchlists
-Edit-Watchlist
-Get-Watchlist
-New-Watchlist
-Remove-Watchlist
-Test-Watchlist
+* Edit-Watchlist
+* Get-Watchlist
+* New-Watchlist
+* Remove-Watchlist
+* Test-Watchlist
