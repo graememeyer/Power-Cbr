@@ -11,13 +11,13 @@ Install-Module -Name "Power-Cbr"
 ```
 
 # Features
-This library currently supports the Alert, Watchlist and a subset of the Process APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/).
+This library currently supports the Alert, Watchlist, Process and Watchlist Action APIs listed in Carbon Black's [official documentation](https://developer.carbonblack.com/reference/enterprise-response/6.3/rest-api/).
 
 /api/v1/process/
 * Search
 * Get (Process Summary)
 * Get (Process Segment Details)
-* Get (Process Preview)
+* Get (Process)
 
 /api/v2/process/
 * Get (Process Summary (No Siblings))
