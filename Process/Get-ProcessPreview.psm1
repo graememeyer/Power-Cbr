@@ -37,6 +37,11 @@ Function Get-ProcessPreview {
         }
 
         $UriPath = "/api/$ApiVersion/process/$ProcessId/$SegmentId/preview"
+
+        if($Query) {
+            $Query = [uri]::EscapeDataString($Query)
+            $UriPath = $UriPath + "?q=$Query"
+        }
         $Method = "GET"
 
         if ($Instance) {
