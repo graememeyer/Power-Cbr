@@ -1,4 +1,3 @@
-ForEach ($Module in (Get-ChildItem -Path .\*.psm1 -Recurse)) {Import-Module $Module.FullName -Force}
 
 Describe "Get-Watchlist" {
     It "Gets Watchlist(s) from Carbon Black EDR" {

@@ -1,4 +1,3 @@
-foreach ($Module in (Get-ChildItem .\*.psm1 -Recurse | Select-Object -ExpandProperty FullName)) {Import-Module $Module -Force}
 
 Describe "Update-Alert" {
     It "Updates an alert from Carbon Black EDR" {

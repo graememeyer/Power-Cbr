@@ -1,4 +1,3 @@
-foreach ($Module in (Get-ChildItem .\*.psm1 -Recurse | Select-Object -ExpandProperty FullName)) {Import-Module $Module -Force}
 
 Describe "Watchlist-Pipeline" {
     It "Tests removing/deleting watchlists in Carbon Black EDR" {
