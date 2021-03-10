@@ -2,7 +2,7 @@
 Describe "Get-Watchlist" {
     It "Gets Watchlist(s) from Carbon Black EDR" {
 
-        $Watchlists = Get-Watchlists
+        $Watchlists = Get-Watchlist
 
         $Watchlists | Should -Not -BeNullOrEmpty
         $Watchlists.Count | Should -BeGreaterThan 2
