@@ -16,6 +16,7 @@ Function Get-ProcessSummary {
             [ValidateScript({$_ -Match "\w+-\w+-\w+-\w+-\w+-\w+"})]
         [string]$UniqueId,
 
+        [Alias("DetailsOnly")]
         [switch]$NoSiblings
     )
     process {
