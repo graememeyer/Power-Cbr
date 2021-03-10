@@ -37,7 +37,7 @@ This library currently supports the Alert, Watchlist and a subset of the Process
 * Set / update watchlist actions / action_types
 
 # Roadmap
-Current version: 1.0
+Current version: 1.1.0
 
 # Known Issues
 None, other than the not-yet-built content.
@@ -55,7 +55,8 @@ New-CbrInstance
 Set-CurrentInstance
 
 ## Processes
-Get-ProcessEventDetails
+Get-ProcessEventDetail
+Get-ProcessPreview
 Get-ProcessSegment
 Get-ProcessSummary
 Search-Process
