@@ -41,6 +41,7 @@ This library currently supports the Alert, Watchlist, Process and Watchlist Acti
 Current version: 1.1.0
 
 * Backup + restore watchlists
+* Position 0 / assumed argument
 * In-line documentation/comment-based help
 * Basic user-guide in the README
 * Save credentials and instance info some-how. TBD
