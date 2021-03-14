@@ -40,6 +40,16 @@ This library currently supports the Alert, Watchlist, Process and Watchlist Acti
 # Roadmap
 Current version: 1.1.0
 
+* Backup + restore watchlists
+* In-line documentation/comment-based help
+* Basic user-guide in the README
+* Save credentials and instance info some-how. TBD
+* Binary API
+* Go-live API
+* May have to move to a class / more object-oriented model if the supported APIs keep drifting with Server versions.
+* PowerShell 7 support / testing
+
+
 # Known Issues
 None, other than the not-yet-built content.
 
