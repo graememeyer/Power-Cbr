@@ -1,10 +1,21 @@
 # New-Watchlist.psm1
 Function New-Watchlist {
     param(
-        [Parameter(mandatory=$False)] [string]$Instance,
-        [Parameter(mandatory=$False)] [string]$Name,
-        [Parameter(mandatory=$False)] [string]$Description,
-        [Parameter(mandatory=$False)] [string]$Search_query
+            [Parameter(mandatory=$False)]
+            [string]
+        $Instance,
+
+            [Parameter(mandatory=$False, ValueFromPipelineByPropertyName=$true)]
+            [string]
+        $Name,
+
+            [Parameter(mandatory=$False, ValueFromPipelineByPropertyName=$true)]
+            [string]
+        $Description,
+
+            [Parameter(mandatory=$False, ValueFromPipelineByPropertyName=$true)]
+            [string]
+        $Search_query
     )
     process {
         $UriPath = "/api/v1/watchlist"
