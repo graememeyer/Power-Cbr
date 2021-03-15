@@ -38,9 +38,9 @@ This library currently supports the Alert, Watchlist, Process and Watchlist Acti
 * Set / update watchlist actions / action_types
 
 # Roadmap
-Current version: 1.1.0
+Current version: 1.2.0
 
-* Backup + restore watchlists
+* ~~Backup + restore watchlists~~
 * Position 0 / assumed argument
 * In-line documentation/comment-based help
 * Basic user-guide in the README
@@ -49,6 +49,12 @@ Current version: 1.1.0
 * Go-live API
 * May have to move to a class / more object-oriented model if the supported APIs keep drifting with Server versions.
 * PowerShell 7 support / testing
+
+# Version History
+
+1.2 - Backup + restore watchlists
+
+1.1 - Public Release
 
 
 # Known Issues

@@ -3,12 +3,29 @@ Function Edit-Watchlist {
     [alias("Set-Watchlist")]
     [alias("Update-Watchlist")]
     param(
-        [Parameter(mandatory=$True, ValueFromPipelineByPropertyName=$True)] [int]$Id,
-        [Parameter(mandatory=$False)] [string]$Instance,
-        [Parameter(mandatory=$False)] [string]$Name,
-        [Parameter(mandatory=$False)] [string]$Description,
-        [Parameter(mandatory=$False)] [string]$Search_Query,
-        [Parameter(mandatory=$False)] [bool]$Enabled
+            [Parameter(mandatory=$True, ValueFromPipelineByPropertyName=$True)]
+            [int]
+        $Id,
+
+            [Parameter(mandatory=$False)]
+            [string]
+        $Instance,
+
+            [Parameter(mandatory=$False)]
+            [string]
+        $Name,
+
+            [Parameter(mandatory=$False)]
+            [string]
+        $Description,
+
+            [Parameter(mandatory=$False)]
+            [string]
+        $Search_Query,
+
+            [Parameter(mandatory=$False)]
+            [bool]
+        $Enabled
     )
     process {
         $UriPath = "/api/v1/watchlist/$Id"
@@ -36,12 +53,6 @@ Function Edit-Watchlist {
         if ($Search_query)  {$Body.search_query = $Search_query}
         if ($Enabled)       {$Body.enabled = $Enabled}
 
-
-        if ($Instance) {
-            Invoke-Api -Uri $UriPath -Method $Method -Body $Body -Instance $Instance
-        }
-        else {
-            Invoke-Api -UriPath $UriPath -Method $Method -Body $Body
-        }
+        Invoke-Api -Uri $UriPath -Method $Method -Body $Body -Instance $Instance
     }
 }
